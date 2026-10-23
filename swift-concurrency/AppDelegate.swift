@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  fundamental-gcd
+//  swift-concurrency
 //
 //  Created by Vokal-Ican on 21/10/26.
 //

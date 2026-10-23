@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		C1748B943088D35B00AE100F /* fundamental-gcd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fundamental-gcd.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1748B943088D35B00AE100F /* swift-concurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-concurrency.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		C1748BA63088D35C00AE100F /* Exceptions for "fundamental-gcd" folder in "fundamental-gcd" target */ = {
+		C1748BA63088D35C00AE100F /* Exceptions for "swift-concurrency" folder in "swift-concurrency" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = C1748B933088D35B00AE100F /* fundamental-gcd */;
+			target = C1748B933088D35B00AE100F /* swift-concurrency */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		C1748B963088D35B00AE100F /* fundamental-gcd */ = {
+		C1748B963088D35B00AE100F /* swift-concurrency */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				C1748BA63088D35C00AE100F /* Exceptions for "fundamental-gcd" folder in "fundamental-gcd" target */,
+				C1748BA63088D35C00AE100F /* Exceptions for "swift-concurrency" folder in "swift-concurrency" target */,
 			);
-			path = "fundamental-gcd";
+			path = "swift-concurrency";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -45,7 +45,7 @@
 		C1748B8B3088D35B00AE100F = {
 			isa = PBXGroup;
 			children = (
-				C1748B963088D35B00AE100F /* fundamental-gcd */,
+				C1748B963088D35B00AE100F /* swift-concurrency */,
 				C1748B953088D35B00AE100F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,7 +53,7 @@
 		C1748B953088D35B00AE100F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C1748B943088D35B00AE100F /* fundamental-gcd.app */,
+				C1748B943088D35B00AE100F /* swift-concurrency.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,9 +61,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C1748B933088D35B00AE100F /* fundamental-gcd */ = {
+		C1748B933088D35B00AE100F /* swift-concurrency */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1748BA73088D35C00AE100F /* Build configuration list for PBXNativeTarget "fundamental-gcd" */;
+			buildConfigurationList = C1748BA73088D35C00AE100F /* Build configuration list for PBXNativeTarget "swift-concurrency" */;
 			buildPhases = (
 				C1748B903088D35B00AE100F /* Sources */,
 				C1748B913088D35B00AE100F /* Frameworks */,
@@ -74,13 +74,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				C1748B963088D35B00AE100F /* fundamental-gcd */,
+				C1748B963088D35B00AE100F /* swift-concurrency */,
 			);
-			name = "fundamental-gcd";
+			name = "swift-concurrency";
 			packageProductDependencies = (
 			);
 			productName = "fundamental-gcd";
-			productReference = C1748B943088D35B00AE100F /* fundamental-gcd.app */;
+			productReference = C1748B943088D35B00AE100F /* swift-concurrency.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -98,7 +98,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C1748B8F3088D35B00AE100F /* Build configuration list for PBXProject "fundamental-gcd" */;
+			buildConfigurationList = C1748B8F3088D35B00AE100F /* Build configuration list for PBXProject "swift-concurrency" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -112,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C1748B933088D35B00AE100F /* fundamental-gcd */,
+				C1748B933088D35B00AE100F /* swift-concurrency */,
 			);
 		};
 /* End PBXProject section */
@@ -146,10 +146,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "fundamental-gcd/Info.plist";
+				INFOPLIST_FILE = "swift-concurrency/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -157,7 +157,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "list.fundamental-gcd";
+				PRODUCT_BUNDLE_IDENTIFIER = "list.swift-concurrency";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -177,10 +177,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "fundamental-gcd/Info.plist";
+				INFOPLIST_FILE = "swift-concurrency/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -188,7 +188,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "list.fundamental-gcd";
+				PRODUCT_BUNDLE_IDENTIFIER = "list.swift-concurrency";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -322,7 +322,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C1748B8F3088D35B00AE100F /* Build configuration list for PBXProject "fundamental-gcd" */ = {
+		C1748B8F3088D35B00AE100F /* Build configuration list for PBXProject "swift-concurrency" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1748BAA3088D35C00AE100F /* Debug */,
@@ -331,7 +331,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1748BA73088D35C00AE100F /* Build configuration list for PBXNativeTarget "fundamental-gcd" */ = {
+		C1748BA73088D35C00AE100F /* Build configuration list for PBXNativeTarget "swift-concurrency" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1748BA83088D35C00AE100F /* Debug */,
