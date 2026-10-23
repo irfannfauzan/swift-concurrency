@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class ImageLoader {
+final class OperationQueueImageLoader {
 
     // MARK: - Singleton
 
-    static let shared = ImageLoader()
+    static let shared = OperationQueueImageLoader()
 
     private init() {}
 

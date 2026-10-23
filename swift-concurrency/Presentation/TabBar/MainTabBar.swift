@@ -26,9 +26,28 @@ class MainTabBar: UITabBarController {
     }
     
     private func setupNavbar() {
-        let operationQueue = makeNavbar(root: OperationQueueViewController(), title: "Operation Queue", icon: "house", selectedIcon: "house.fill")
-        let gcd = makeNavbar(root: GCDViewController(), title: "GCD", icon: "person", selectedIcon: "person.fill")
-        viewControllers = [operationQueue, gcd]
+        let operationQueueTab = makeNavbar(
+            root: OperationQueueViewController(),
+            title: "OperationQueue",
+            icon: "square.stack.3d.up",
+            selectedIcon: "square.stack.3d.up.fill"
+        )
+
+        let gcdTab = makeNavbar(
+            root: GCDViewController(),
+            title: "GCD",
+            icon: "cpu",
+            selectedIcon: "cpu.fill"
+        )
+
+        let asyncTab = makeNavbar(
+            root: AsyncViewController(),
+            title: "Async",
+            icon: "bolt",
+            selectedIcon: "bolt.fill"
+        )
+        
+        viewControllers = [operationQueueTab, gcdTab, asyncTab]
     }
     
     private func makeNavbar(root: UIViewController, title: String, icon: String, selectedIcon: String) -> UINavigationController {

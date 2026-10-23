@@ -2,7 +2,7 @@
 //  GCDViewController.swift
 //  swift-concurrency
 //
-//  Created by Vokal-Ican on 21/10/26.
+//  Created by Vokal-Ican on 23/10/26.
 //
 
 import UIKit
@@ -10,12 +10,12 @@ import UIKit
 class GCDViewController: UIViewController {
 
     // MARK: - Properties
-
+    
     private let urls: [URL] = (1...100).compactMap {
         URL(string: "https://picsum.photos/id/\($0)/300/450")
     }
-
-    private var finishedCount = 0
+    
+    private var totalFinished = 0
 
     // MARK: - UI
 
@@ -30,35 +30,55 @@ class GCDViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
-
+    
+    //MARK: Overlay atau Layar gelap belakang
+    
     private let overlayView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+       let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
+    //MARK: CardView
+    
     private let cardView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
-        view.layer.cornerRadius = 16
+        view.layer.cornerRadius = 4
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
+    //MARK: Text Jumlah download
+    
     private let progressLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         label.text = "Mengunduh 0/100 (0%)"
         label.font = .systemFont(ofSize: 16, weight: .semibold)
-        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
+    } ()
+    
+    //MARK: Progress download
 
     private let progressView: UIProgressView = {
-        let progress = UIProgressView(progressViewStyle: .default)
-        progress.progress = 0
-        progress.tintColor = .systemIndigo
-        return progress
+        let label = UIProgressView()
+        label.progress = 0
+        label.tintColor = .systemIndigo
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    //MARK: Stack gabung text jumlah download dan progress download
+    
+    private lazy var stackProgress: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [progressLabel, progressView])
+        view.axis = .vertical
+        view.spacing = 8
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     // MARK: - Lifecycle
@@ -68,8 +88,7 @@ class GCDViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setupAppbar()
         setupLayout()
-        setupOverlay()
-        preloadAllImages()
+        preload()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,80 +117,72 @@ class GCDViewController: UIViewController {
 
     private func setupLayout() {
         view.addSubview(tableView)
+        view.addSubview(overlayView)
+        overlayView.addSubview(cardView)
+        cardView.addSubview(stackProgress)
 
         let safe = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: safe.topAnchor, constant: 12),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
-
-    // MARK: - Setup Overlay
-
-    private func setupOverlay() {
-        let stack = UIStackView(arrangedSubviews: [progressLabel, progressView])
-        stack.axis = .vertical
-        stack.spacing = 12
-        stack.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(overlayView)
-        overlayView.addSubview(cardView)
-        cardView.addSubview(stack)
-
-        NSLayoutConstraint.activate([
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
             overlayView.topAnchor.constraint(equalTo: view.topAnchor),
-            overlayView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             overlayView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             overlayView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
-            cardView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor),
-            cardView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor),
+            overlayView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            cardView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cardView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             cardView.widthAnchor.constraint(equalToConstant: 260),
-
-            stack.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20),
-            stack.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -20),
-            stack.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20),
-            stack.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20)
+            
+            stackProgress.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20),
+            stackProgress.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20),
+            stackProgress.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20),
+            stackProgress.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -20),
         ])
     }
-
+    
     // MARK: - Preload
-
-    private func preloadAllImages() {
+    
+    private func preload() {
+        
         let group = DispatchGroup()
-
+        
         for url in urls {
             group.enter()
-
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 if let data = try? Data(contentsOf: url),
                    let image = UIImage(data: data) {
                     GCDImageCache.shared.save(image, for: url)
                 }
-
                 DispatchQueue.main.async {
                     self?.updateProgress()
                     group.leave()
                 }
             }
         }
-
+        
         group.notify(queue: .main) { [weak self] in
-            self?.hideOverlay()
             self?.tableView.reloadData()
+            self?.hideOverlay()
         }
+        
     }
 
+    // MARK: - Update Progress
+    
     private func updateProgress() {
-        finishedCount += 1
+        totalFinished += 1
         let total = urls.count
-        let percent = Int(Double(finishedCount) / Double(total) * 100)
+        let percent = Int(Double(totalFinished) / Double(total) * 100)
 
-        progressLabel.text = "Mengunduh \(finishedCount)/\(total) (\(percent)%)"
-        progressView.setProgress(Float(finishedCount) / Float(total), animated: true)
+        progressLabel.text = "Mengunduh \(totalFinished)/\(total) (\(percent)%)"
+        progressView.setProgress(Float(totalFinished) / Float(total), animated: true)
     }
+
+    // MARK: - Hide Overlay
 
     private func hideOverlay() {
         UIView.animate(withDuration: 0.3) {
@@ -180,6 +191,7 @@ class GCDViewController: UIViewController {
             self.overlayView.removeFromSuperview()
         }
     }
+
 }
 
 // MARK: - UITableViewDataSource

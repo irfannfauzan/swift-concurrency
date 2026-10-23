@@ -86,14 +86,14 @@ class OperationQueueCell: UITableViewCell {
         titleLabel.text = title
         currentURL = imageURL
         
-        if let cached = ImageLoader.shared.cacheImage(for: imageURL) {
+        if let cached = OperationQueueImageLoader.shared.cacheImage(for: imageURL) {
             posterImageView.image = cached
             return
         }
         
         posterImageView.image = UIImage(systemName: "photo")
         
-        downloadOperation = ImageLoader.shared.load(imageURL) { [weak self] image in
+        downloadOperation = OperationQueueImageLoader.shared.load(imageURL) { [weak self] image in
             guard self?.currentURL == imageURL else { return }
             self?.posterImageView.image = image
         }

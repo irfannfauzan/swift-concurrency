@@ -45,7 +45,7 @@ class OperationQueueViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        ImageLoader.shared.cancelAllQueue()
+        OperationQueueImageLoader.shared.cancelAllQueue()
     }
 
     deinit {                                                 
